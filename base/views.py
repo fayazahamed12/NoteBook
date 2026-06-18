@@ -13,9 +13,11 @@ from .models import Task
  
 # Create your views here.
 
+from .forms import CustomLoginForm, CustomUserCreationForm
+
 class CustomLoginView(LoginView):
     template_name = 'base/login.html'
-    fields = '__all__'
+    form_class = CustomLoginForm
     redirect_authenticated_user = True
 
     def get_success_url(self):
@@ -24,7 +26,7 @@ class CustomLoginView(LoginView):
 
 class RegisterPage(FormView):
     template_name = 'base/register.html'
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
 

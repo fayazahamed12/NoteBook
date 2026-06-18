@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: notebook-django
+    env: python
+    buildCommand: "./render_build.sh"
+    startCommand: "gunicorn todolist.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.12
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
